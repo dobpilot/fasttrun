@@ -1,0 +1,5 @@
+comment = 'fast transaction-unsafe truncate'
+default_version = '2.0'
+module_pathname = '$libdir/fasttrun'
+relocatable = true
+trusted = true
