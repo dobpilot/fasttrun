@@ -43,15 +43,11 @@ fasttruncate(PG_FUNCTION_ARGS) {
 	relvar = makeRangeVarFromNameList(relname_list);
 	relOid = RangeVarGetRelid(relvar, AccessExclusiveLock, false);
 
-	if ( get_rel_relkind(relOid) != RELKIND_RELATION )
-		elog(ERROR,"Relation isn't a ordinary table");
-
-	rel = table_open(relOid, NoLock);
-
 	if ( !isTempNamespace(get_rel_namespace(relOid)) )
 		elog(ERROR,"Relation isn't a temporary table");
 
-
+	rel = table_open(relOid, NoLock);
+		
 	/*
 	 * clean table if row count > 0
 	*/
